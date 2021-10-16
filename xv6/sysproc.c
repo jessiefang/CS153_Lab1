@@ -23,7 +23,9 @@ sys_exit(void)
 int
 sys_wait(void)
 {
-  return wait();
+  int *s;
+  argptr(0, (char**)&s, sizeof(int*));
+  return wait(s);
 }
 
 int
