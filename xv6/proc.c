@@ -332,9 +332,7 @@ waitpid(int pid, int *status, int options)
         continue;
       pidmatch = 1;
       if(p->state == ZOMBIE){
-        if(status){
-          *status = p->status;
-        }
+
         // Found one.
         pid = p->pid;
         kfree(p->kstack);
@@ -346,6 +344,19 @@ waitpid(int pid, int *status, int options)
         p->killed = 0;
         p->state = UNUSED;
         release(&ptable.lock);
+
+        if(status){
+          *status = p->status;
+          if (options == 1) {
+            return *status;
+          }
+        }
+        else {
+          if (options == 1) {
+            return -1;
+          }
+        }
+
         return pid;
       }
     }
