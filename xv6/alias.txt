@@ -1,0 +1,9 @@
+[myin013@sledge xv6]$ ls -l
+total 8896
+-rw-r--r-- 1 myin013 csgrads      39 Oct 13 18:17 alias.txt
+.......
+[myin013@sledge xv6]$ cat alias.txt
+exit=exit
+wait=wait
+waitpid=waitpid
+[myin013@sledge xv6]$
